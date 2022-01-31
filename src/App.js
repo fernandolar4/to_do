@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
+  const [mensagem, setMensagem] = React.useState("");
+  const [listaMsg, setListaMsg] = React.useState([]);
+
+  function handleListaMsg(novaMensagem) {
+    const MSG = {
+      texto: novaMensagem,
+      id: listaMsg.length,
+    };
+    setListaMsg([...listaMsg, MSG]);
+    setMensagem("");
+  }
+
+  // function deleteMensagem(ID) {
+  //   console.log("deleteMensagem");
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <h1>Afazeres</h1>
+      <div>
+        <ul>
+          {listaMsg.map((msg) => (
+            <li key={msg.id}>
+              {msg.texto} <button onSubmit={console.log("a")}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            handleListaMsg(mensagem);
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <input
+            type="text"
+            placeholder="Adicionar Tarefa"
+            value={mensagem}
+            onChange={(event) => {
+              setMensagem(event.target.value);
+            }}
+          ></input>
+          <input type="submit"></input>
+        </form>
+      </div>
+    </>
   );
 }
 
