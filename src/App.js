@@ -25,7 +25,7 @@ function App() {
         <ul>
           {listaMsg.map((msg) => (
             <li key={msg.id}>
-              {msg.texto} <button onSubmit={console.log("a")}>Delete</button>
+              {msg.texto} <button onClick={console.log("a")}>Delete</button>
             </li>
           ))}
         </ul>
