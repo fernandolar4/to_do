@@ -14,9 +14,11 @@ function App() {
     setMensagem("");
   }
 
-  // function deleteMensagem(ID) {
-  //   console.log("deleteMensagem");
-  // }
+  function deletaMensagem(id) {
+    const listaFiltrada = listaMsg.filter((message) => message.id !== id);
+
+    setListaMsg(listaFiltrada);
+  }
 
   return (
     <>
@@ -25,7 +27,8 @@ function App() {
         <ul>
           {listaMsg.map((msg) => (
             <li key={msg.id}>
-              {msg.texto} <button onClick={console.log("a")}>Delete</button>
+              {msg.texto}{" "}
+              <button onClick={() => deletaMensagem(msg.id)}>Delete</button>
             </li>
           ))}
         </ul>
